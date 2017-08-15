@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Backup</title>
-        <link rel="shortcut icon" href="<?= base_url(); ?>/assets/img/backup.png" type="image/png">
+        <title>CobianMonitoring</title>
+        <link rel="shortcut icon" href="<?= base_url(); ?>/assets/img/CobianMonitoring.png" type="image/png">
         <link href="<?= base_url(); ?>assets/css/common.css" rel="stylesheet" type="text/css" media="all" />
         <link href="<?= base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <script type="text/javascript" src="<?= base_url() . 'assets/js/jquery.js'; ?>"></script>
@@ -20,10 +20,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="col-md-6"></div>
                         </div>-->
             <div id="body">
-                <h5>Новых писем - <?php echo $new_mail_count; ?>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Удаленных заданий - <?= $del_item_count; ?></h5>
+                <h5>Новых писем - <?php //echo $new_mail_count; ?>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Удаленных заданий - <?php //echo $del_item_count; ?></h5>
                 <table class="table table-bordered table-hover table-condensed">
                     <!--Шапка таблицы-->
                     <?php
+/*
                     $i = -30;
                     echo '<tr>';
                     echo '<td>Наименование задания</td>';
@@ -37,9 +38,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         ++$i;
                     } while ($i < 7);
                     echo '</tr>';
+                    */
                     ?>
                     <!-- Вторая строка -->
                     <?php
+                    /*
                     // Вывод серверов
                     $server_lable = '';
                     foreach ($task as $key => $i) {
@@ -122,42 +125,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
-
-
-                        // Строки
-//                        for($i=1;$i<38;$i++){
-//                            echo '<td>';
-//                            echo '</td>';
-//                        }
-                        // Статусы заданий
-//                        foreach ($item as $item_key => $k) {
-//                            if ($k['task'] == $i['id']) {
-//                                echo '<td>';
-//                                //echo $k['status'];
-//                                echo '</td>';
-//                            }
-//                        }
-
                         echo '</tr>';
                     }
 
-                    // Тестовый вывод
-//                    echo '<xmp>';
-//                    print_r($item);
-//                    echo '</xmp>';
-                    // Вывод заданий
-                    /* foreach ($task as $key => $item){
-                      echo '<tr><td>';
-                      echo $item['title'];
-                      echo '</td></tr>';
-                      } */
+                    */
                     ?>
-    <!--                    <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>-->
+    
                 </table>
                 <button type="button" id="button_add" class="btn btn-default" data-toggle="modal" data-target="#add_modal">Добавить задание</button>
             </div>
