@@ -1,0 +1,37 @@
+#container {
+    font-family: Verdana;
+    width: 1500px;
+    margin: 10px auto;
+}
+
+#logo_img {
+    max-height: 50px;
+    padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.holiday {
+    background-color: green;
+}
+
+.title_link {
+    color: #000;
+    text-decoration: none;
+}
+
+.color_full {
+background-color: #007F0E;
+}
+
+.color_inc {
+background-color: #6BAD3A;
+}
+
+.color_error {
+background-color: red;
+}
+
+.task_title {
+    font-size: 11px;
+}
