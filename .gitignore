@@ -1,5 +1,5 @@
 .DS_Store
-
+application/config/config-local.php
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess

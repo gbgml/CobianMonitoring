@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <head>
         <meta charset="utf-8">
         <title>CobianMonitoring</title>
-        <link rel="shortcut icon" href="<?= base_url(); ?>/assets/img/CobianMonitoring.png" type="image/png">
+        <link rel="shortcut icon" href="<?= base_url(); ?>assets/img/CobianMonitoring.png" type="image/png">
         <link href="<?= base_url(); ?>assets/css/common.css" rel="stylesheet" type="text/css" media="all" />
         <link href="<?= base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <script type="text/javascript" src="<?= base_url() . 'assets/js/jquery.js'; ?>"></script>
