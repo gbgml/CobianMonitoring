@@ -10,40 +10,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link href="<?= base_url(); ?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <script type="text/javascript" src="<?= base_url() . 'assets/js/jquery.js'; ?>"></script>
         <script type="text/javascript" src="<?= base_url() . 'assets/js/common.js'; ?>"></script>
-
         <script type="text/javascript" src="<?= base_url() . 'assets/js/bootstrap.js'; ?>"></script>
     </head>
     <body>
         <div id="container">
-            <!--            <div class="row">
-                            <div class="col-md-6"><img src="<?= base_url(); ?>assets/img/backup.png" id="logo_img" align="left"><h2 id="title"><a class="title_link" href="<?= base_url(); ?>">Каллендарь Резервных копий</a></h2></div>
-                            <div class="col-md-6"></div>
-                        </div>-->
             <div id="body">
                 <h5>Новых писем - <?php //echo $new_mail_count; ?>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Удаленных заданий - <?php //echo $del_item_count; ?></h5>
                 <table class="table table-bordered table-hover table-condensed">
                     <!--Шапка таблицы-->
                     <?php
-/*
-                    $i = -30;
-                    echo '<tr>';
-                    echo '<td>Наименование задания</td>';
-                    // Перебор дат
-                    do {
-                        echo '<td ';
-                        $date_temp = strtotime('+' . $i . ' day');
-                        echo ((date('w', $date_temp) == 0 || date('w', $date_temp) == 6) ? 'class="warning"><b>'
-                                . date('d', $date_temp) . '</b>' : 'class="info">' . date('d', $date_temp));
-                        echo '</td>';
-                        ++$i;
-                    } while ($i < 7);
-                    echo '</tr>';
-                    */
-                    ?>
-                    <!-- Вторая строка -->
-                    <?php
-                    /*
+                        $i = -30;
+                        echo '<tr>';
+                        echo '<td>Наименование задания</td>';
+                        // Перебор дат
+                        do {
+                            echo '<td ';
+                            $date_temp = strtotime('+' . $i . ' day');
+                            echo ((date('w', $date_temp) == 0 || date('w', $date_temp) == 6) ? 'class="warning"><b>'
+                                    . date('d', $date_temp) . '</b>' : 'class="info">' . date('d', $date_temp));
+                            echo '</td>';
+                            ++$i;
+                        } while ($i < 7);
+                        echo '</tr>';
+                    
                     // Вывод серверов
+                    /*
                     $server_lable = '';
                     foreach ($task as $key => $i) {
                         // Разделитель Сервер
@@ -132,10 +123,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     ?>
     
                 </table>
-                <button type="button" id="button_add" class="btn btn-default" data-toggle="modal" data-target="#add_modal">Добавить задание</button>
+                <a type="button" id="button_add" class="btn btn-default" href="<?= base_url() . 'task'; ?>">Настройка</a>
             </div>
         </div>
-        <!-- Modal -->
+        <!-- Модальное окно добавления задания -->
         <div class="modal fade" id="add_modal" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

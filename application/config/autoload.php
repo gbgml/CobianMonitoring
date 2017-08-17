@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('url', 'file');
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,14 @@ $autoload['helper'] = array('url');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('config-local');
+if (file_exists('application/config/config-local.php')){
+	$autoload['config'] = array('config-local');
+}
+else
+{
+	$autoload['config'] = array('');
+}
+
 
 /*
 | -------------------------------------------------------------------

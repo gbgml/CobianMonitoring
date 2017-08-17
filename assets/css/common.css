@@ -3,6 +3,11 @@
     width: 1500px;
     margin: 10px auto;
 }
+#container_install {
+    font-family: Verdana;
+    width: 700px;
+    margin: 70px auto;
+}
 
 #logo_img {
     max-height: 50px;
