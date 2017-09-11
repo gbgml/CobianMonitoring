@@ -73,12 +73,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-$db['default'] = array(
+$db['test'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'backup',
-	'password' => 'sansai',
-	'database' => 'backup',
+	'username' => '',
+	'password' => '',
+	'database' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

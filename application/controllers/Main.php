@@ -54,15 +54,23 @@ class Main extends CI_Controller {
                 
                 // $data = '$config[\'base_url\'] = \'' . $this->input->post('inputBaseUrl') . '\'';
                 $string = read_file('application/config/config.php');
-                $string_edit = str_replace(quotemeta("config['base_url'] = '';"), quotemeta("config['base_url'] = '123';"), $string);
+                $string_edit = str_replace("base_url'] = ''", "base_url'] = '" . $this->input->post('inputBaseUrl') . "'", $string);
                 write_file('application/config/config-local.php', $string_edit);
                 redirect('../');
-
-
-
             }
             else {
                 $this->load->view('install_view');
             }
         }
+
+    public function test()
+        {
+          $this->load->model('main_model');
+          $data['test'] = $this->main_model->test_db();
+          // $this->load->view('articles_view',$data);
+          echo '<xmp>'; print_r($data); echo '</xmp>';
+
+        }    
+        
+
 }

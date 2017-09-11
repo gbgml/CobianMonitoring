@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('database');
 
 /*
 | -------------------------------------------------------------------
@@ -103,13 +103,26 @@ $autoload['helper'] = array('url', 'file');
 | config files.  Otherwise, leave it blank.
 |
 */
+$autoload['config'] = array('');
+
 if (file_exists('application/config/config-local.php')){
-	$autoload['config'] = array('config-local');
+	array_push($autoload['config'], 'config-local');
 }
-else
-{
-	$autoload['config'] = array('');
-}
+
+// if (file_exists('application/config/database-local.php')){
+// 	array_push($autoload['config'], 'database-local');
+// }
+
+
+
+
+// if (file_exists('application/config/config-local.php')){
+// 	$autoload['config'] = array('config-local');
+// }
+// else
+// {
+// 	$autoload['config'] = array('');
+// }
 
 
 /*
