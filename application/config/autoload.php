@@ -59,7 +59,9 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 $autoload['libraries'] = array('');
-
+if (file_exists('application/config/database.php')){
+	array_push($autoload['libraries'], 'database');
+}
 /*
 | -------------------------------------------------------------------
 |  Auto-load Drivers

@@ -53,9 +53,24 @@ class Main extends CI_Controller {
                 // echo '<br>';
                 
                 // $data = '$config[\'base_url\'] = \'' . $this->input->post('inputBaseUrl') . '\'';
+
+                // Записываем изменения в файл config.php
                 $string = read_file('application/config/config.php');
                 $string_edit = str_replace("base_url'] = ''", "base_url'] = '" . $this->input->post('inputBaseUrl') . "'", $string);
                 write_file('application/config/config-local.php', $string_edit);
+
+                // Записываем изменения в autoload.php
+                // $string = read_file('application/config/autoload.php');
+                // $string_edit = str_replace("libraries'] = array('');", "libraries'] = array('database');", $string);
+                // write_file('application/config/autoload.php', $string_edit);
+
+                // Записываем изменения в database.php
+                $string = read_file('application/config/database-example.php');
+                $string = str_replace("'hostname' => 'localhost'", "'hostname' => '" . $this->input->post('inputDBServer') . "'", $string);
+                $string = str_replace("'username' => ''", "'username' => '" . $this->input->post('inputDBLogin') . "'", $string);
+                $string = str_replace("'password' => ''", "'password' => '" . $this->input->post('inputDBPassword') . "'", $string);
+                write_file('application/config/database.php', $string);
+
                 redirect('../');
             }
             else {
