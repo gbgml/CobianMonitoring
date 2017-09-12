@@ -38,7 +38,8 @@ class Main extends CI_Controller {
     public function install()
         {
             if(count($this->input->post()) > 0){
-
+                $db_name = 'cobianmonitoring';
+                
                 // echo $this->input->post('inputBaseUrl');
                 // echo '<br>';
                 // echo $this->input->post('inputDBServer');
@@ -64,12 +65,21 @@ class Main extends CI_Controller {
                 // $string_edit = str_replace("libraries'] = array('');", "libraries'] = array('database');", $string);
                 // write_file('application/config/autoload.php', $string_edit);
 
+
                 // Записываем изменения в database.php
                 $string = read_file('application/config/database-example.php');
                 $string = str_replace("'hostname' => 'localhost'", "'hostname' => '" . $this->input->post('inputDBServer') . "'", $string);
                 $string = str_replace("'username' => ''", "'username' => '" . $this->input->post('inputDBLogin') . "'", $string);
                 $string = str_replace("'password' => ''", "'password' => '" . $this->input->post('inputDBPassword') . "'", $string);
+                // $string = str_replace("'database' => ''", "'database' => '" . $db_name . "'", $string);
                 write_file('application/config/database.php', $string);
+                $this->load->database();
+                // Создание БД с проверкой существования
+                $this->load->model('main_model');
+                if (!$this->main_model->check_db($db_name)){
+                    $this->main_model->create_db($db_name);
+                }
+
 
                 redirect('../');
             }
@@ -77,14 +87,10 @@ class Main extends CI_Controller {
                 $this->load->view('install_view');
             }
         }
-
+    
     public function test()
         {
-          $this->load->model('main_model');
-          $data['test'] = $this->main_model->test_db();
-          // $this->load->view('articles_view',$data);
-          echo '<xmp>'; print_r($data); echo '</xmp>';
-
+            
         }    
         
 
