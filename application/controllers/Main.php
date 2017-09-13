@@ -39,13 +39,6 @@ class Main extends CI_Controller {
         {
             if(count($this->input->post()) > 0){
                 $db_name = 'cobianmonitoring';
-                
-                // echo $this->input->post('inputBaseUrl');
-                // echo '<br>';
-                // echo $this->input->post('inputDBServer');
-                // echo '<br>';
-                // echo $this->input->post('inputDBLogin');
-                // echo '<br>';
                 // echo $this->input->post('inputDBPassword');
                 // echo '<br>';
                 // echo $this->input->post('inputEmail');
@@ -71,14 +64,25 @@ class Main extends CI_Controller {
                 $string = str_replace("'hostname' => 'localhost'", "'hostname' => '" . $this->input->post('inputDBServer') . "'", $string);
                 $string = str_replace("'username' => ''", "'username' => '" . $this->input->post('inputDBLogin') . "'", $string);
                 $string = str_replace("'password' => ''", "'password' => '" . $this->input->post('inputDBPassword') . "'", $string);
-                // $string = str_replace("'database' => ''", "'database' => '" . $db_name . "'", $string);
                 write_file('application/config/database.php', $string);
                 $this->load->database();
+                
                 // Создание БД с проверкой существования
                 $this->load->model('main_model');
                 if (!$this->main_model->check_db($db_name)){
                     $this->main_model->create_db($db_name);
                 }
+
+                //Прописываем в database.php
+                $string = read_file('application/config/database.php');
+                $string = str_replace("'database' => ''", "'database' => '" . $db_name . "'", $string);
+                write_file('application/config/database.php', $string);
+
+                // Cоздание таблиц
+                $this->db->close();
+                $this->db->initialize();
+                $this->load->database('default');
+                $this->main_model->create_table();
 
 
                 redirect('../');
@@ -90,7 +94,8 @@ class Main extends CI_Controller {
     
     public function test()
         {
-            
+            $this->load->model('main_model');
+            $this->main_model->create_table();
         }    
         
 

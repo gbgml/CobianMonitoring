@@ -2,10 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class main_model extends CI_Model {
-	public function test_db()
-	{
-        
-    }
 
     // Проверка существования БД
     public function check_db($db_name)
@@ -27,5 +23,42 @@ class main_model extends CI_Model {
         {
             // return 'База данных создана!';
         }
+	}
+
+    // Создание таблицы
+	public function create_table()
+	{
+		// Это нужно тк запись в database.php о БД еще не инициализировалась
+		$this->db->query('use cobianmonitoring');
+
+		// Названия и содержимое таблиц
+		$table_name = array(
+			'item' => array(
+				'id' => array('type' => 'INT', 'constraint' => 9, 'unsigned' => TRUE, 'auto_increment' => TRUE),
+	            'task' => array('type' => 'INT', 'constraint' => 9),
+	            'date' => array('type' =>'date'),
+	            'status' => array('type' => 'INT', 'constraint' => 9),
+			),
+			'server' => array(
+				'id' => array('type' => 'INT','constraint' => 9, 'unsigned' => TRUE, 'auto_increment' => TRUE),
+	            'order_id' => array('type' => 'INT', 'constraint' => 9),
+	            'title' => array('type' =>'varchar', 'constraint' => 100),
+			),
+			'task' => array(
+				'id' => array('type' => 'INT','constraint' => 9, 'unsigned' => TRUE, 'auto_increment' => TRUE),
+	            'order_id' => array('type' => 'INT', 'constraint' => 9),
+	            'title' => array('type' =>'varchar', 'constraint' => 100),
+	            'server' => array('type' => 'INT', 'constraint' => 9),
+	            'description' => array('type' =>'varchar', 'constraint' => 700),
+			)
+		);
+
+		// Создание таблиц
+		$this->load->dbforge();
+        foreach ($table_name as $key => $value) {
+        	$this->dbforge->add_key('id', TRUE);
+            $this->dbforge->add_field($value);
+			$this->dbforge->create_table($key, TRUE);
+		}        
 	}
  }
