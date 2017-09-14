@@ -25,78 +25,73 @@ class Main extends CI_Controller {
         // Loadin view
         //$this->load->view('main_view', $data);
         $this->load->view('main_view');
-	}
-
-    // public function create_db()
-    // {
-    //     $data = array();
-    //     $data['task'] =  array('id' => '0', 'title' => 'Название задания');
-    //     $data['server'] = array();
-    //     $data['item'] = array();
-    //     echo '<xmp>'; print_r($data); echo '</xmp>';
-    // }
+    }
+    
     public function install()
-        {
-            if(count($this->input->post()) > 0){
-                $db_name = 'cobianmonitoring';
-                // echo $this->input->post('inputDBPassword');
-                // echo '<br>';
+    {
+        if(count($this->input->post()) > 0){
+            $db_name = 'cobianmonitoring';
                 // echo $this->input->post('inputEmail');
                 // echo '<br>';
                 // echo $this->input->post('ininputEmailPasswordputBaseUrl');
                 // echo '<br>';
-                
-                // $data = '$config[\'base_url\'] = \'' . $this->input->post('inputBaseUrl') . '\'';
 
                 // Записываем изменения в файл config.php
-                $string = read_file('application/config/config.php');
-                $string_edit = str_replace("base_url'] = ''", "base_url'] = '" . $this->input->post('inputBaseUrl') . "'", $string);
-                write_file('application/config/config-local.php', $string_edit);
-
-                // Записываем изменения в autoload.php
-                // $string = read_file('application/config/autoload.php');
-                // $string_edit = str_replace("libraries'] = array('');", "libraries'] = array('database');", $string);
-                // write_file('application/config/autoload.php', $string_edit);
-
+            $string = read_file('application/config/config.php');
+            $string_edit = str_replace("base_url'] = ''", "base_url'] = '" . $this->input->post('inputBaseUrl') . "'", $string);
+            write_file('application/config/config-local.php', $string_edit);
 
                 // Записываем изменения в database.php
-                $string = read_file('application/config/database-example.php');
-                $string = str_replace("'hostname' => 'localhost'", "'hostname' => '" . $this->input->post('inputDBServer') . "'", $string);
-                $string = str_replace("'username' => ''", "'username' => '" . $this->input->post('inputDBLogin') . "'", $string);
-                $string = str_replace("'password' => ''", "'password' => '" . $this->input->post('inputDBPassword') . "'", $string);
-                write_file('application/config/database.php', $string);
-                $this->load->database();
-                
+            $string = read_file('application/config/database-example.php');
+            $string = str_replace("'hostname' => 'localhost'", "'hostname' => '" . $this->input->post('inputDBServer') . "'", $string);
+            $string = str_replace("'username' => ''", "'username' => '" . $this->input->post('inputDBLogin') . "'", $string);
+            $string = str_replace("'password' => ''", "'password' => '" . $this->input->post('inputDBPassword') . "'", $string);
+            write_file('application/config/database.php', $string);
+            $this->load->database();
+
                 // Создание БД с проверкой существования
-                $this->load->model('main_model');
-                if (!$this->main_model->check_db($db_name)){
-                    $this->main_model->create_db($db_name);
-                }
+            $this->load->model('main_model');
+            if (!$this->main_model->check_db($db_name)){
+                $this->main_model->create_db($db_name);
+            }
 
                 //Прописываем в database.php
-                $string = read_file('application/config/database.php');
-                $string = str_replace("'database' => ''", "'database' => '" . $db_name . "'", $string);
-                write_file('application/config/database.php', $string);
+            $string = read_file('application/config/database.php');
+            $string = str_replace("'database' => ''", "'database' => '" . $db_name . "'", $string);
+            write_file('application/config/database.php', $string);
 
                 // Cоздание таблиц
-                $this->db->close();
-                $this->db->initialize();
-                $this->load->database('default');
-                $this->main_model->create_table();
-
-
-                redirect('../');
-            }
-            else {
-                $this->load->view('install_view');
-            }
-        }
-    
-    public function test()
-        {
-            $this->load->model('main_model');
             $this->main_model->create_table();
-        }    
-        
+
+                // Создание файла constants.php
+            $string = read_file('application/config/constants-example.php');
+            $string = str_replace("'EMAIL_SERVER', ''", "'EMAIL_SERVER', '" . $this->input->post('inputEmailServer') . "'", $string);
+            $string = str_replace("'EMAIL_POP3_PORT', ''", "'EMAIL_POP3_PORT', '" . $this->input->post('inputEmailPop3Port') . "'", $string);
+            $string = str_replace("'EMAIL_USER', ''", "'EMAIL_USER', '" . $this->input->post('inputEmailUser') . "'", $string);
+            $string = str_replace("'EMAIL_PASSWORD', ''", "'EMAIL_PASSWORD', '" . $this->input->post('inputEmailPassword') . "'", $string);
+            write_file('application/config/constants.php', $string);
+
+
+
+                // Переход на основную странтицу
+            redirect('../');
+        }
+        else {
+            $this->load->view('install_view');
+        }
+    }
+
+    // Получение почты
+    public function get_mail() {
+        $this->load->model('main_model');
+        return $this->main_model->add_item();
+    }
+
+    public function test()
+    {
+
+
+    }    
+
 
 }
