@@ -7,10 +7,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>CobianMonitoring</title>
     <link rel="shortcut icon" href="/assets/img/CobianMonitoring.png" type="image/png">
     <link href="/assets/css/common.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <script type="text/javascript" src="/assets/js/jquery.js"></script>
+    <link href="/assets/css/bootstrap-3.3.7.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="/assets/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/'assets/js/common.js"></script>
-    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap-3.3.7.js"></script>
 </head>
 <body>
     <div id="container_install">
