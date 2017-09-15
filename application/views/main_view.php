@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <body>
         <div id="container">
             <div id="body">
-                <h5>Новых писем - <?php //echo $new_mail_count; ?>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Удаленных заданий - <?php //echo $del_item_count; ?></h5>
+                <h5>Новых писем - <?php echo $new_mail_count; ?>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Удаленных заданий - <?php echo $del_item_count; ?></h5>
                 <table class="table table-bordered table-hover table-condensed">
                     <!--Шапка таблицы-->
                     <?php
@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         echo '</tr>';
                     
                     // Вывод серверов
-                    /*
+                    
                     $server_lable = '';
                     foreach ($task as $key => $i) {
                         // Разделитель Сервер
@@ -119,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         echo '</tr>';
                     }
 
-                    */
+                    
                     ?>
     
                 </table>
