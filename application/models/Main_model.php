@@ -176,6 +176,7 @@ class main_model extends CI_Model {
 		}
 		// Счетчик новых писем
 		$counter[1] = $mail_number_int;
+
 		return $counter;
 	}
 
@@ -206,6 +207,7 @@ class main_model extends CI_Model {
 
 	function get_task() {
 		$this->db->select('task.id');
+		$this->db->select('task.order_id');
 		$this->db->select('task.description');
 		$this->db->select('task.title AS task_title');
 		$this->db->select('server.title AS server_title');
@@ -232,6 +234,13 @@ class main_model extends CI_Model {
 	}
 
 	function add_task($data) {
+		$this->db->select_max('order_id');
+		$res = $this->db->get('task');
+		$res2 = $res->result_array();
+		// echo '<xmp>'; print_r($res2); echo '</xmp>';
+		// echo ++$res2[0]['order_id'];
+		// die();
+		$data['order_id'] = ++$res2[0]['order_id'];
 		$this->db->insert('task', $data);
 		return $this->db->insert_id();
 	}

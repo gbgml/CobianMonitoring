@@ -27,6 +27,7 @@ class Main extends CI_Controller {
         // Загружаем вид
         // echo '<xmp>'; print_r($data); echo '</xmp>';
         // die();
+        $this->load->view('header_view');
         $this->load->view('main_view', $data);
         // $this->load->view('main_view');
     }
@@ -35,11 +36,6 @@ class Main extends CI_Controller {
     {
         if(count($this->input->post()) > 0){
             $db_name = 'cobianmonitoring';
-                // echo $this->input->post('inputEmail');
-                // echo '<br>';
-                // echo $this->input->post('ininputEmailPasswordputBaseUrl');
-                // echo '<br>';
-
                 // Записываем изменения в файл config.php
             $string = read_file('application/config/config.php');
             $string_edit = str_replace("base_url'] = ''", "base_url'] = '" . $this->input->post('inputBaseUrl') . "'", $string);
@@ -91,9 +87,10 @@ class Main extends CI_Controller {
         return $this->main_model->add_item();
     }
 
+
+
     public function test()
     {
-        $this->load->view('test_view');
 
     }    
 
