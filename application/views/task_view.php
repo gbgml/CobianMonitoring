@@ -1,9 +1,3 @@
-    <script type="text/javascript">
-            $(document).ready(function() {
-                // Initialise the table
-                $("#table-1").tableDnD();
-            });
-        </script>
     <body>
         <div id="container">
             <div id="body">
@@ -16,16 +10,32 @@
                     </thead>
                     <tbody>
                         <?php
+                        $server_lable = '';
                         foreach ($task as $key => $i) {
+                            // Разделитель Сервер
+                            if ($i['server_title'] != $server_lable) {
+                                echo '<tr id="srv_id.'.$i['server_id'].'"><td class="task_title"><b>';
+                                echo $i['server_title'];
+                                echo '</b></td></tr>';
+                            }
+                            $server_lable = $i['server_title'];
+
+                            // Название задания
                             echo '<tr id="' . $i['id'] . '">';
-                                echo '<td class="task_title">';
-                                echo $i['task_title'];
-                                echo '</td>';
-                                
-                                echo '<td>'.$i['id'].'</td>';
-                                echo '<td>'.$i['order_id'].'</td>';
+                            echo '<td class="task_title">';
+                            echo $i['task_title'];
+                            echo '</td>';
+
+                            echo '<td>'.$i['id'].'</td>';
+                            echo '<td>'.$i['order_id'].'</td>';
                             echo '</tr>';
 
+                        }
+                        // Сервера без заданий
+                        foreach ($empty_server as $key => $i) {
+                            echo '<tr id="srv_id.'.$i['id'].'"><td class="task_title"><b>';
+                            echo $i['title'];
+                            echo '</b></td></tr>';
                         }
                         ?>
                     </tbody>
@@ -70,7 +80,7 @@
                 );
             $jdb->create('habr', $keys);
         </script> -->
-       
+
 
 
 
@@ -91,24 +101,18 @@
                     url: '<?= base_url();?>task/sort_save/', // ссылка на обработчик
                     type: "POST",
                     data: { order: $('#sort tbody').sortable("toArray")
-                    },
-                    success: function (data) {
+                },
+                success: function (data) {
+                        // alert(data);
                         // обработка если надо
                     },
                     error: function () {
                         // обработка если надо
                     }
-                    });
+                });
                 }
             });
-
             $("#sort tbody").disableSelection();
-
-
         </script>
-
-        
-
-
     </body>
     </html>

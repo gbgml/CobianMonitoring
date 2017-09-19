@@ -211,6 +211,7 @@ class main_model extends CI_Model {
 		$this->db->select('task.description');
 		$this->db->select('task.title AS task_title');
 		$this->db->select('server.title AS server_title');
+		$this->db->select('server.id AS server_id');
 		$this->db->from('task');
 		$this->db->join('server', 'task.server = server.id', 'left');
 		$this->db->order_by('server.order_id', 'ASC');
@@ -237,13 +238,43 @@ class main_model extends CI_Model {
 		$this->db->select_max('order_id');
 		$res = $this->db->get('task');
 		$res2 = $res->result_array();
-		// echo '<xmp>'; print_r($res2); echo '</xmp>';
-		// echo ++$res2[0]['order_id'];
-		// die();
 		$data['order_id'] = ++$res2[0]['order_id'];
 		$this->db->insert('task', $data);
 		return $this->db->insert_id();
 	}
+	function get_empty_server() {
+		$this->db->select('server.id');
+		$this->db->select('server.title');
+		$this->db->from('task');
+		$this->db->join('server', 'server.id = task.server', 'right');
+		$this->db->where('task.title', NULL);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
+	function edit_item($status, $task_id, $date) {
+	        $data['date'] = $date;
+	        $data['task'] = $task_id;
+
+	        if ($status == 0) {
+
+	            $this->db->where('date', $data['date']);
+	            $this->db->where('task', $data['task']);
+	            $this->db->delete('item');
+	        } else {
+	            $data['status'] = $status;
+	            $this->db->where('date', $data['date']);
+	            $this->db->where('task', $data['task']);
+	//            echo $this->db->count_all_results('item');
+	            if ($this->db->count_all_results('item') < 1) {
+	                $this->db->insert('item', $data);
+	            } else {
+	                $data['status'] = $status;
+	                $this->db->where('date', $data['date']);
+	                $this->db->where('task', $data['task']);
+	                $this->db->update('item', $data);
+	            }
+	        }
+	    }
 
 }

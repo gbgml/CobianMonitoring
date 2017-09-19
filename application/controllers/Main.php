@@ -24,6 +24,8 @@ class Main extends CI_Controller {
         $data['task'] = $this->main_model->get_task();
         // Получение списка копий
         $data['item'] = $this->main_model->get_item();
+        // Получение списка серверов без заданий
+        $data['empty_server'] = $this->main_model->get_empty_server();
         // Загружаем вид
         // echo '<xmp>'; print_r($data); echo '</xmp>';
         // die();
@@ -70,10 +72,7 @@ class Main extends CI_Controller {
             $string = str_replace("'EMAIL_USER', ''", "'EMAIL_USER', '" . $this->input->post('inputEmailUser') . "'", $string);
             $string = str_replace("'EMAIL_PASSWORD', ''", "'EMAIL_PASSWORD', '" . $this->input->post('inputEmailPassword') . "'", $string);
             write_file('application/config/constants.php', $string);
-
-
-
-                // Переход на основную странтицу
+            // Переход на основную странтицу
             redirect('../');
         }
         else {
@@ -87,12 +86,35 @@ class Main extends CI_Controller {
         return $this->main_model->add_item();
     }
 
+    // Редактирование статуса заказа
+    public function edit_item($status_html, $task_id, $date) {
+            switch ($status_html) {
+                case 0:
+                    $status = '0';
+                    break;
+                case 1:
+                    $status = '1';
+                    break;
+                case 2:
+                    $status = '2';
+                    break;
+                case 3:
+                    $status = '3';
+                    break;
+                case 4:
+                    $status = '4';
+                    break;
+            }
+            $this->load->model('main_model');
+            $this->main_model->edit_item($status, $task_id, $date);
+            redirect('..');
+        }
 
 
     public function test()
     {
-
+        $this->load->model('main_model');
+        $data = $this->main_model->get_empty_server();
+        echo '<xmp>'; print_r($data); echo '</xmp>';
     }    
-
-
 }

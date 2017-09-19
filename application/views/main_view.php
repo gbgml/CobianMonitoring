@@ -20,7 +20,6 @@
                 echo '</tr>';
 
                     // Вывод серверов
-
                 $server_lable = '';
                 foreach ($task as $key => $i) {
                         // Разделитель Сервер
@@ -28,6 +27,7 @@
                         echo '<tr><td class="task_title"><b>';
                         echo $i['server_title'];
                         echo '</b></td></tr>';
+
                     }
                     $server_lable = $i['server_title'];
 
@@ -100,6 +100,11 @@
                         ++$j;
                     } while ($j < 7);
                     echo '</tr>';
+                }
+                foreach ($empty_server as $key => $i) {
+                    echo '<tr><td class="task_title"><b>';
+                        echo $i['title'];
+                        echo '</b></td></tr>';
                 }
                 ?>
             </table>
