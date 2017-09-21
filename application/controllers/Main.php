@@ -113,8 +113,7 @@ class Main extends CI_Controller {
 
     public function test()
     {
-        $this->load->model('main_model');
-        $data = $this->main_model->get_empty_server();
-        echo '<xmp>'; print_r($data); echo '</xmp>';
+        $this->load->view('header_view');
+        $this->load->view('test_view');
     }    
 }

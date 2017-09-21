@@ -12,6 +12,21 @@ class task_model extends CI_Model {
 		$this->db->where('id', $data['id']);
 		$this->db->update('server', $data);
 	}
-
+	function get_one_task($id)
+	{
+		$this->db->where('id', $id);
+		$query = $this->db->get('task');
+		return $query->result_array();
+	}
+	function update_task($data)
+	{
+		$this->db->where('id', $data['id']);
+		$this->db->update('task', $data);
+	}
+	function delete_task($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('task');
+	}
 
 }
