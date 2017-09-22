@@ -38,8 +38,6 @@
                     echo '</div>';
                     echo '</td>';
 
-
-
                         // Строка статусов заданий
                         // Перебор дат
                     $j = -30;
@@ -50,13 +48,7 @@
                         $end_status = NULL;
                         foreach ($item as $item_key => $k) {
                             if ($k['date'] == date('Y-m-d', $date_temp) and $k['task'] == $i['id']) {
-
-                                    //echo 'class="success">';
-//                                    echo ((date('w', $date_temp) == 0 || date('w', $date_temp) == 6) ? 'class="success"><b>'
-//                                            . date('d', $date_temp) . '</b>' : 'class="info">' . $k['status']);
-
                                 switch ($k['status']) {
-
                                     case 1:
                                     $end_status = 1;
                                     break;
@@ -88,8 +80,6 @@
                             echo 'class="active"';
                             break;
                         }
-                            //echo date('d-m-Y', $date_temp);
-
                         echo '><div tabindex="0" data-trigger="focus" style="font-size: 11px;" data-toggle="popover" data-placement="bottom" data-html="true" data-content="'
                         . '<a href=Main/edit_item/0/' . $i['id'] . '/' . date('Y-m-d', $date_temp) . '>Не делалась</a><br>'
                         . '<a href=Main/edit_item/1/' . $i['id'] . '/' . date('Y-m-d', $date_temp) . '>Полная</a><br>'

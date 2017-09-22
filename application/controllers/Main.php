@@ -18,7 +18,6 @@ class Main extends CI_Controller {
         } else {
             $data['del_item_count'] = 0;
         }
-        
 
         // Получение списка заданий
         $data['task'] = $this->main_model->get_task();
@@ -27,8 +26,6 @@ class Main extends CI_Controller {
         // Получение списка серверов без заданий
         $data['empty_server'] = $this->main_model->get_empty_server();
         // Загружаем вид
-        // echo '<xmp>'; print_r($data); echo '</xmp>';
-        // die();
         $this->load->view('header_view');
         $this->load->view('main_view', $data);
         // $this->load->view('main_view');
@@ -109,11 +106,4 @@ class Main extends CI_Controller {
             $this->main_model->edit_item($status, $task_id, $date);
             redirect('..');
         }
-
-
-    public function test()
-    {
-        $this->load->view('header_view');
-        $this->load->view('test_view');
-    }    
 }

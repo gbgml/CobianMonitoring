@@ -28,5 +28,24 @@ class task_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete('task');
 	}
-
+	function add_server($data)
+	{
+		$this->db->insert('server',$data);
+	}
+	function get_one_server($id)
+	{
+		$this->db->where('id', $id);
+		$query = $this->db->get('server');
+		return $query->result_array();
+	}
+	function update_server($data)
+	{
+		$this->db->where('id', $data['id']);
+		$this->db->update('server', $data);
+	}
+	function delete_server($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('server');
+	}
 }
