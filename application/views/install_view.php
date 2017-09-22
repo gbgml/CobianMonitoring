@@ -56,13 +56,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="form-group">
                     <label for="inputEmailServer" class="col-sm-4 control-label">Сервер Email</label>
                     <div class="col-sm-8">
-                        <input type="password" name="inputEmailServer" class="form-control" id="inputEmailServer" placeholder="server">
+                        <input type="text" name="inputEmailServer" class="form-control" id="inputEmailServer" placeholder="server">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmailPop3Port" class="col-sm-4 control-label">POP3 порт Email Сервера</label>
                     <div class="col-sm-8">
-                        <input type="password" name="inputEmailPop3Port" class="form-control" id="inputEmailPop3Port" placeholder="110">
+                        <input type="text" name="inputEmailPop3Port" class="form-control" id="inputEmailPop3Port" placeholder="110">
                     </div>
                 </div>
 
